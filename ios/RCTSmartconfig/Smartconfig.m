@@ -66,7 +66,7 @@ RCT_EXPORT_MODULE();
 }
 RCT_EXPORT_METHOD(stop) {
     NSString *type = [self.options valueForKey:@"type"];
-    if (strcmp(type, "esptouch") == 0) {
+    if (strcmp([type UTF8String], [@"esptouch" UTF8String]) == 0) {
         [self cancel];
     }else{
         [self stopDiscovery];
@@ -84,7 +84,7 @@ RCT_EXPORT_METHOD(start:(NSDictionary *)options
     }
 
     NSString *type = [self.options valueForKey:@"type"];
-    if (strcmp(type, "esptouch") == 0)
+    if (strcmp([type UTF8String], [@"esptouch" UTF8String]) == 0)
     {
         dispatch_queue_t  queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
         dispatch_async(queue, ^{
