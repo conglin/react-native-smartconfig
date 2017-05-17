@@ -82,6 +82,7 @@ RCT_EXPORT_METHOD(start:(NSDictionary *)options
     for (NSString *key in options.keyEnumerator) { // Replace default options
         [self.options setValue:options[key] forKey:key];
     }
+
     NSString *type = [self.options valueForKey:@"type"];
     if (strcmp(type, "esptouch") == 0)
     {
