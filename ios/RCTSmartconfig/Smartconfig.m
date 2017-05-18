@@ -171,6 +171,7 @@ RCT_EXPORT_METHOD(start:(NSDictionary *)options
     @try {
         [self connectTILibrary];
         if (self.firstTimeConfig == nil) {
+            RCTLogInfo(@"self.firstTimeConfig == nil return end startTransmitting");
             return;
         }
         [self sendAction];
@@ -179,7 +180,7 @@ RCT_EXPORT_METHOD(start:(NSDictionary *)options
     @catch (NSException *exception) {
         NSLog(@"%s exception == %@",__FUNCTION__,[exception description]);
         // [self performSelectorOnMainThread:@selector(alertWithMessage:) withObject:[exception description] waitUntilDone:NO];
-
+        [self stopDiscovery]
     }
     @finally {
     }
@@ -192,6 +193,7 @@ RCT_EXPORT_METHOD(start:(NSDictionary *)options
 -(void) sendAction{
     @try {
         NSLog(@"%s begin", __PRETTY_FUNCTION__);
+        [self.firstTimeConfig stopTransmitting];
         [self.firstTimeConfig transmitSettings];
         NSLog(@"%s end", __PRETTY_FUNCTION__);
     }
