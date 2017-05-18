@@ -127,6 +127,7 @@ RCT_EXPORT_METHOD(start:(NSDictionary *)options
         });
     }else{
         [self startTransmitting];
+        resolve(nil);
     }
 
 
