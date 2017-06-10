@@ -57,9 +57,10 @@ public class RCTSmartconfigModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void stop(type) {
+    public void stop(final ReadableMap options) {
+        String type = options.getString("type");
         if (type == "cc3000"){
-            this.stopCC3000()
+            this.stopCC3000();
         }else{
             if (mEsptouchTask != null) {
                 Log.d(TAG, "cancel task");
