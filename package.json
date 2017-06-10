@@ -1,0 +1,84 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "react-native-smartconfig@github:conglin/react-native-smartconfig",
+        "scope": null,
+        "escapedName": "react-native-smartconfig",
+        "name": "react-native-smartconfig",
+        "rawSpec": "github:conglin/react-native-smartconfig",
+        "spec": "github:conglin/react-native-smartconfig",
+        "type": "hosted",
+        "hosted": {
+          "type": "github",
+          "ssh": "git@github.com:conglin/react-native-smartconfig.git",
+          "sshUrl": "git+ssh://git@github.com/conglin/react-native-smartconfig.git",
+          "httpsUrl": "git+https://github.com/conglin/react-native-smartconfig.git",
+          "gitUrl": "git://github.com/conglin/react-native-smartconfig.git",
+          "shortcut": "github:conglin/react-native-smartconfig",
+          "directUrl": "https://raw.githubusercontent.com/conglin/react-native-smartconfig/master/package.json"
+        }
+      },
+      "/Users/user/Documents/projects/snowflake"
+    ]
+  ],
+  "_from": "conglin/react-native-smartconfig",
+  "_id": "react-native-smartconfig@0.2.2",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/react-native-smartconfig",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "react-native-smartconfig@github:conglin/react-native-smartconfig",
+    "scope": null,
+    "escapedName": "react-native-smartconfig",
+    "name": "react-native-smartconfig",
+    "rawSpec": "github:conglin/react-native-smartconfig",
+    "spec": "github:conglin/react-native-smartconfig",
+    "type": "hosted",
+    "hosted": {
+      "type": "github",
+      "ssh": "git@github.com:conglin/react-native-smartconfig.git",
+      "sshUrl": "git+ssh://git@github.com/conglin/react-native-smartconfig.git",
+      "httpsUrl": "git+https://github.com/conglin/react-native-smartconfig.git",
+      "gitUrl": "git://github.com/conglin/react-native-smartconfig.git",
+      "shortcut": "github:conglin/react-native-smartconfig",
+      "directUrl": "https://raw.githubusercontent.com/conglin/react-native-smartconfig/master/package.json"
+    }
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "git://github.com/conglin/react-native-smartconfig.git#fdf285e07f58896a1901bbca3d7036929030ea22",
+  "_shasum": "5d1dc5ffa2310434422bed7309d405aa0a61aba0",
+  "_shrinkwrap": null,
+  "_spec": "react-native-smartconfig@github:conglin/react-native-smartconfig",
+  "_where": "/Users/user/Documents/projects/snowflake",
+  "author": {
+    "email": "Tuan PM"
+  },
+  "dependencies": {},
+  "description": "react-native ESP8266 smartconfig module",
+  "devDependencies": {},
+  "gitHead": "fdf285e07f58896a1901bbca3d7036929030ea22",
+  "keywords": [
+    "react-native",
+    "react",
+    "native",
+    "iot",
+    "esp8266",
+    "smartconfig",
+    "esptouch",
+    "airkiss"
+  ],
+  "license": "MIT",
+  "name": "react-native-smartconfig",
+  "nativePackage": true,
+  "optionalDependencies": {},
+  "readme": "\n\n## Description\n\n[react-native](https://github.com/facebook/react-native) module for [ESP8266 ESPTOUCH Smart config](https://github.com/EspressifApp)\n\n## Featues\n* Support both IOS and Android\n* React Native Promise support\n* Fast way to do configure wifi network for IOT device\n\n## Getting started\n### Mostly automatic install\n1. `npm install rnpm --global`\n2. `npm install react-native-smartconfig@latest --save`\n3. `rnpm link react-native-smartconfig`\n\n### Manual install\n#### iOS\n- `npm install react-native-smartconfig@latest --save`\n-  In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`\n- Go to `node_modules` ➜ `react-native-smartconfig` and add `RCTSmartconfig.xcodeproj`\n- In XCode, in the project navigator, select your project. Add `libRCTSmartconfig.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`\n- Click `RCTSmartconfig.xcodeproj` in the project navigator and go the `Build Settings` tab. Make sure 'All' is toggled on (instead of 'Basic'). In the `Search Paths` section, look for `Header Search Paths` and make sure it contains both `$(SRCROOT)/../../react-native/React` - mark  as `recursive`.\n- Run your project (`Cmd+R`)\n\n\n#### Android\n\n-  `npm install react-native-smartconfig@latest --save`\n-   Modify the ReactInstanceManager.builder() calls chain in `android/app/main/java/.../MainActivity.java` to include:\n\n```javascript\nimport com.tuanpm.RCTSmartconfig; // import\n\n\n.addPackage(new RCTSmartconfigPackage()) //for older version\n\nnew RCTSmartconfigPackage()           // for newest version of react-native\n```\n\n-  Append the following lines to `android/settings.gradle` before `include ':app'`:\n\n```\ninclude ':react-native-smartconfig'\nproject(':react-native-smartconfig').projectDir = new File(rootProject.projectDir, \t'../node_modules/react-native-smartconfig/android')\n```\n\n- Insert the following lines inside the dependencies block in `android/app/build.gradle`, dont missing `apply plugin:'java'` on top:\n\n```\ncompile project(':react-native-smartconfig')\n```\n\nNotes:\n\n```\ndependencies {\n  compile project(':react-native-smartconfig')\n}\n```\n\n\n\n## Usage\n\n```javascript\nimport Smartconfig from 'react-native-smartconfig';\n\nSmartconfig.start({\n  type: 'esptouch', //or airkiss, now doesn't not effect\n  ssid: 'wifi-network-ssid',\n  bssid: 'filter-device', //\"\" if not need to filter (don't use null)\n  password: 'wifi-password',\n  timeout: 50000 //now doesn't not effect\n}).then(function(results){\n  //Array of device success do smartconfig\n  console.log(results);\n  /*[\n    {\n      'bssid': 'device-bssi1', //device bssid\n      'ipv4': '192.168.1.11' //local ip address\n    },\n    {\n      'bssid': 'device-bssi2', //device bssid\n      'ipv4': '192.168.1.12' //local ip address\n    },\n    ...\n  ]*/\n}).catch(function(error) {\n\n});\n\nSmartconfig.stop(); //interrupt task\n```\n\n## Todo\n\n* [ ] Support automatic get current wifi network ssid\n* [ ] Set timeout effect\n* [ ] Support airkiss\n\n## LICENSE\n\n```\n  The MIT License (MIT)\n\n  Copyright (c) 2015 <TuanPM> https://twitter.com/tuanpmt\n\n  Permission is hereby granted, free of charge, to any person obtaining a copy\n  of this software and associated documentation files (the \"Software\"), to deal\n  in the Software without restriction, including without limitation the rights\n  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n  copies of the Software, and to permit persons to whom the Software is\n  furnished to do so, subject to the following conditions:\n\n  The above copyright notice and this permission notice shall be included in all\n  copies or substantial portions of the Software.\n\n  THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\n  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n  SOFTWARE.\n```\n",
+  "readmeFilename": "README.md",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.2.2"
+}
