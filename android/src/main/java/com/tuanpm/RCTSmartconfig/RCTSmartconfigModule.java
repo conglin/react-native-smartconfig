@@ -63,10 +63,11 @@ public class RCTSmartconfigModule extends ReactContextBaseJavaModule {
     public void stop(final ReadableMap options) {
         String type = options.getString("type");
         if (type == "cc3000"){
+            Log.d(TAG, "stopCC3000");
             this.stopCC3000();
         }else{
             if (mEsptouchTask != null) {
-                Log.d(TAG, "cancel task");
+                Log.d(TAG, "cancel task: mEsptouchTask.interrupt");
                 mEsptouchTask.interrupt();
             }
         }
@@ -78,8 +79,10 @@ public class RCTSmartconfigModule extends ReactContextBaseJavaModule {
         String type = options.getString("type");
         String pass = options.getString("password");
         if (type == "cc3000"){
+            Log.d(TAG, "cc3000");
             this.startCC3000(options, promise);
         }else{
+            Log.d(TAG, "startEsptouch");
             this.startEsptouch(options, promise);
         }
 
@@ -114,9 +117,11 @@ public class RCTSmartconfigModule extends ReactContextBaseJavaModule {
             @Override
             public void onSmartConfigEvent(SmtCfgEvent event, Exception e) {
                System.out.println("onSmartConfigEvent----------->"+event.name()+" toString:"+event.toString());
+               Log.d(TAG, "onSmartConfigEvent----------->"+event.name()+" toString:"+event.toString());
             }
         };
         try {
+            Log.d(TAG, "smartConfig.transmitSettings----------->"+"ssid:"+SSID+"passwordKey:"+passwordKey+"gateway:"+gateway);
             smartConfig = new SmartConfig(smartConfigListener, freeData,
                     passwordKey, paddedEncryptionKey, gateway, SSID, (byte) 0,
                     "");
