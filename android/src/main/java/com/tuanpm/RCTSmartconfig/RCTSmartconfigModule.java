@@ -62,7 +62,8 @@ public class RCTSmartconfigModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void stop(final ReadableMap options) {
         String type = options.getString("type");
-        if (type == "cc3000"){
+        Log.d(TAG, "type=="+type);
+        if (type.equals("cc3000")){
             Log.d(TAG, "stopCC3000");
             this.stopCC3000();
         }else{
@@ -78,7 +79,8 @@ public class RCTSmartconfigModule extends ReactContextBaseJavaModule {
     public void start(final ReadableMap options, final Promise promise) {
         String type = options.getString("type");
         String pass = options.getString("password");
-        if (type == "cc3000"){
+        Log.d(TAG, "type=="+type);
+        if (type.equals("cc3000")){
             Log.d(TAG, "cc3000");
             this.startCC3000(options, promise);
         }else{
