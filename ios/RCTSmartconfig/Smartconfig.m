@@ -64,7 +64,7 @@ RCT_EXPORT_MODULE();
     }
     return self;
 }
-RCT_EXPORT_METHOD(stop) {
+RCT_EXPORT_METHOD(stop:(NSDictionary *)options) {
     NSString *type = [self.options valueForKey:@"type"];
     if (strcmp([type UTF8String], [@"esptouch" UTF8String]) == 0) {
         [self cancel];
@@ -82,6 +82,7 @@ RCT_EXPORT_METHOD(start:(NSDictionary *)options
     for (NSString *key in options.keyEnumerator) { // Replace default options
         [self.options setValue:options[key] forKey:key];
     }
+
     NSString *type = [self.options valueForKey:@"type"];
     if (strcmp([type UTF8String], [@"esptouch" UTF8String]) == 0)
     {
